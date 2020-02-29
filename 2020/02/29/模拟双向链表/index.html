@@ -7,15 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档 - Three-pointed blood</title>
+<title>模拟双向链表 - Three-pointed blood</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Three-pointed blood">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+    <meta name="description" content="1.模拟单链表首先要定义节点1234567891011class Node2 &amp;#123; public int no;    public String name;    public Node2 next;&#x2F;&#x2F;指向下一个节点    public Node2 pre;&#x2F;&#x2F;指向前一个节点    public Node2(int no, String name) &amp;#123;        this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟双向链表">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/%E6%A8%A1%E6%8B%9F%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Three-pointed blood">
+<meta property="og:description" content="1.模拟单链表首先要定义节点1234567891011class Node2 &amp;#123; public int no;    public String name;    public Node2 next;&#x2F;&#x2F;指向下一个节点    public Node2 pre;&#x2F;&#x2F;指向前一个节点    public Node2(int no, String name) &amp;#123;        this">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:published_time" content="2020-02-29T08:53:33.147Z">
+<meta property="article:modified_time" content="2020-02-29T09:00:36.104Z">
 <meta property="article:author" content="yxc">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="复习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -75,7 +82,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Three-pointed blood" height="28">
+                <img src="/images/logo.svg" alt="模拟双向链表" height="28">
             
             </a>
         </div>
@@ -86,7 +93,7 @@
                 <a class="navbar-item"
                 href="/">Home</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/archives">Archives</a>
                 
                 <a class="navbar-item"
@@ -125,167 +132,146 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
         
-<div class="card widget">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T08:53:33.147Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes 读完 (大约 655 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                模拟双向链表
+            
+        </h1>
+        <div class="content">
+            <h5 id="1-模拟单链表首先要定义节点"><a href="#1-模拟单链表首先要定义节点" class="headerlink" title="1.模拟单链表首先要定义节点"></a>1.模拟单链表首先要定义节点</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node2</span> </span>&#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">int</span> no;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> Node2 next;<span class="comment">//指向下一个节点</span></span><br><span class="line">    <span class="keyword">public</span> Node2 pre;<span class="comment">//指向前一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node2</span><span class="params">(<span class="keyword">int</span> no, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.no = no;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-单链表的添加"><a href="#2-单链表的添加" class="headerlink" title="2.单链表的添加"></a>2.单链表的添加</h5><h6 id="2-1方式一-不按照顺序-找到最后一个节点直接添加"><a href="#2-1方式一-不按照顺序-找到最后一个节点直接添加" class="headerlink" title="2.1方式一 (不按照顺序 找到最后一个节点直接添加)"></a>2.1方式一 (不按照顺序 找到最后一个节点直接添加)</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*添加节点(默认添加到最后)*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addnode</span><span class="params">(Node2 node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个辅助类指针</span></span><br><span class="line">        Node2 temp = head;</span><br><span class="line">        <span class="comment">//找到指针域为null的节点(最后一个节点)</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (temp.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//最后一个节点的next域指向要添加的节点</span></span><br><span class="line">        <span class="comment">//要添加的节点的pre域指向最后一个节点</span></span><br><span class="line">        temp.next = node;</span><br><span class="line">        node.pre = temp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-2方式二-找到一个节点-next域指向的编号大于要添加的节点-先把节点的next域复制给要添加的节点-再修改该节点的next域"><a href="#2-2方式二-找到一个节点-next域指向的编号大于要添加的节点-先把节点的next域复制给要添加的节点-再修改该节点的next域" class="headerlink" title="2.2方式二(找到一个节点(next域指向的编号大于要添加的节点) 先把节点的next域复制给要添加的节点,再修改该节点的next域)"></a>2.2方式二(找到一个节点(next域指向的编号大于要添加的节点) 先把节点的next域复制给要添加的节点,再修改该节点的next域)</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*按照编号顺序添加节点*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addnodebynum</span><span class="params">(Node2 node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个辅助类指针</span></span><br><span class="line">        Node2 temp = head;</span><br><span class="line">        <span class="comment">//记录编号是否相同</span></span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">//找到指针域为null的节点(最后一个节点)</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (temp.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//当前的编号小于下一个节点的编号</span></span><br><span class="line">            <span class="keyword">if</span> (node.no &lt; temp.next.no) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node.no == temp.next.no) &#123;</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//判断是否有相同的编号</span></span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            System.out.println(<span class="string">"编号已存在"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//1.首先改变node.next域</span></span><br><span class="line">            node.next = temp.next;</span><br><span class="line">            node.pre = temp;<span class="comment">//改变node的前指针</span></span><br><span class="line">            <span class="comment">//2.判断是否是最后一个</span></span><br><span class="line">            <span class="keyword">if</span> (temp.next !=<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="comment">//不是则改变下一个的节点的前指针</span></span><br><span class="line">                temp.next.pre = node;</span><br><span class="line">            &#125;</span><br><span class="line">            temp.next = node;<span class="comment">//改变temp的后指针</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-遍历单链表"><a href="#3-遍历单链表" class="headerlink" title="3.遍历单链表"></a>3.遍历单链表</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*遍历所有节点(和单链表一样)*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLinkList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//判断是否为空</span></span><br><span class="line">        <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"链表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//辅助指针</span></span><br><span class="line">        Node2 temp = head.next;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//判断是否为最后一个节点</span></span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(temp);</span><br><span class="line">            <span class="comment">//后移一个</span></span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-根据编号删除节点-和根据编号增加类似"><a href="#4-根据编号删除节点-和根据编号增加类似" class="headerlink" title="4.根据编号删除节点(和根据编号增加类似)"></a>4.根据编号删除节点(和根据编号增加类似)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*按照编号删除节点*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delnode</span><span class="params">(<span class="keyword">int</span> no)</span> </span>&#123;</span><br><span class="line">        Node2 temp = head.next;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">//找到需要删除节点后自我删除</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp.no == no) &#123;</span><br><span class="line">                <span class="comment">//找到了待删除节点的前一个节点</span></span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            temp.pre.next = temp.next;</span><br><span class="line">            <span class="comment">//如果是最后一个节点 (如果不加这句话 当删除最后一个节点时,会报空指针(temp.next.pre)异常  因为temp.next为空没有pre)</span></span><br><span class="line">            <span class="keyword">if</span> (temp.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">                temp.next.pre = temp.pre;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"已删除"</span> + no + <span class="string">"节点"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(no + <span class="string">"节点没有找到"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><span style='font-size:20px;'>本文到此结束 感谢相遇 (●’◡’●)</span></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/" rel="tag">java</a>, <a class="has-link-grey -link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a>, <a class="has-link-grey -link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2020
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T10:34:10.982Z">2020-02-29</time>
-                        <a href="/2020/02/29/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T08:53:33.147Z">2020-02-29</time>
-                        <a href="/2020/02/29/%E6%A8%A1%E6%8B%9F%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟双向链表</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T07:11:32.275Z">2020-02-29</time>
-                        <a href="/2020/02/29/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%83%E4%B9%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-28T12:39:22.572Z">2020-02-28</time>
-                        <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟单链表</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-27T00:34:31.744Z">2020-02-27</time>
-                        <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数组模拟队列</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-23T09:27:27.786Z">2020-02-23</time>
-                        <a href="/2020/02/23/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" class="title has-link-black-ter is-size-6 has-text-weight-normal">稀疏数组</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-22T13:28:16.371Z">2020-02-22</time>
-                        <a href="/2020/02/22/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试准备</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-20T04:04:58.431Z">2020-02-20</time>
-                        <a href="/2020/02/20/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
-    
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/29/hello-world/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Hello World</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/29/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%83%E4%B9%A0/">
+                <span class="level-item">单链表练习</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'mT5uiYctQfAiE0XqhhkGDcaw-gzGzoHsz',
+        app_key: 'MUa8DmKatYFbzoCfJCX5NttC',
+        placeholder: 'good'
+    });
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -874,7 +860,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Three-pointed blood" height="28">
+                    <img src="/images/logo.svg" alt="模拟双向链表" height="28">
                 
                 </a>
                 <p class="is-size-7">

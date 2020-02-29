@@ -7,15 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档 - Three-pointed blood</title>
+<title>稀疏数组 - Three-pointed blood</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Three-pointed blood">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+    <meta name="description" content="1.为什么要用稀疏数组？面对于含有大量相同数据的数组，可以通过稀疏数组的形式来压缩数组.  原数组中存在大量的无效数据，占据了大量的存储空间，真正有用的数据却少之又少 压缩存储可以节省存储空间以避免资源的不必要的浪费，在数据序列化到磁盘时，压缩存储可以提高IO效率   原数组  12345678910110 0 0 0 0 0 0 0 0 0 00 0 1 0 0 0 0 0 0 0 00 0 0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="稀疏数组">
+<meta property="og:url" content="http://yoursite.com/2020/02/23/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Three-pointed blood">
+<meta property="og:description" content="1.为什么要用稀疏数组？面对于含有大量相同数据的数组，可以通过稀疏数组的形式来压缩数组.  原数组中存在大量的无效数据，占据了大量的存储空间，真正有用的数据却少之又少 压缩存储可以节省存储空间以避免资源的不必要的浪费，在数据序列化到磁盘时，压缩存储可以提高IO效率   原数组  12345678910110 0 0 0 0 0 0 0 0 0 00 0 1 0 0 0 0 0 0 0 00 0 0">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:published_time" content="2020-02-23T09:27:27.786Z">
+<meta property="article:modified_time" content="2020-02-29T09:02:52.774Z">
 <meta property="article:author" content="yxc">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="复习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -75,7 +82,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Three-pointed blood" height="28">
+                <img src="/images/logo.svg" alt="稀疏数组" height="28">
             
             </a>
         </div>
@@ -86,7 +93,7 @@
                 <a class="navbar-item"
                 href="/">Home</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/archives">Archives</a>
                 
                 <a class="navbar-item"
@@ -125,167 +132,165 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
         
-<div class="card widget">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-23T09:27:27.786Z">2020-02-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes 读完 (大约 632 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                稀疏数组
+            
+        </h1>
+        <div class="content">
+            <h3 id="1-为什么要用稀疏数组？"><a href="#1-为什么要用稀疏数组？" class="headerlink" title="1.为什么要用稀疏数组？"></a>1.为什么要用稀疏数组？</h3><p>面对于<strong>含有大量相同数据</strong>的数组，可以通过稀疏数组的形式来压缩数组.</p>
+<ul>
+<li>原数组中存在大量的无效数据，占据了大量的存储空间，真正有用的数据却少之又少</li>
+<li>压缩存储可以节省存储空间以避免资源的不必要的浪费，在数据序列化到磁盘时，压缩存储可以提高IO效率</li>
+</ul>
+<blockquote>
+<p>原数组</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 1 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 2 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 0 0 0 0 0 0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>稀疏数组形式</p>
+</blockquote>
+<pre><code>11 11 2
+1  2  1
+2  4  2</code></pre><p><strong>arr[0] [0]</strong> 表示原来的数据<strong>总行数</strong>    <strong>arr[0] [1]</strong>   表示<strong>总列数</strong>    <strong>arr[0] [2]</strong>  表示<strong>有效数据</strong>总个数</p>
+<p><strong>arr[1] [0]</strong> 表示第一个有效数据所在的<strong>行数</strong>  </p>
+<p><strong>arr[1] [1]</strong> 表示第一个有效数据所在的<strong>列数</strong>   </p>
+<p><strong>arr[1] [2]</strong> 表示第一个有效数据的值</p>
+<p>下面的以此类推</p>
+<hr>
+<p>也就是说稀疏数组的<strong>第一行表示原数组的大小 和有效数据的个数</strong>，<strong>其他的表示有效数据所在的位置和值</strong></p>
+<h3 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h3><h5 id="2-1-创建稀疏数组并写入数据"><a href="#2-1-创建稀疏数组并写入数据" class="headerlink" title="2.1.创建稀疏数组并写入数据"></a>2.1.创建稀疏数组并写入数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.首先得到原数组的有效数据的个数</span></span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span>[] rows : FirstArray) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> row : rows) &#123;</span><br><span class="line">        <span class="keyword">if</span> (row != <span class="number">0</span>) &#123;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.1创建稀疏数组</span></span><br><span class="line">  <span class="keyword">int</span> spareArray[][] = <span class="keyword">new</span> <span class="keyword">int</span>[sum + <span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">5</span>;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">5</span>;</span><br><span class="line">        spareArray[<span class="number">0</span>][<span class="number">2</span>] = sum;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.2把有效数据写进去</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">             <span class="keyword">if</span> (FirstArray[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                 spareArray[count][<span class="number">0</span>] = i;</span><br><span class="line">                 spareArray[count][<span class="number">1</span>] = j;</span><br><span class="line">                 spareArray[count][<span class="number">2</span>] = FirstArray[i][j];</span><br><span class="line">                 count++;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2将稀疏数组写入磁盘文件中"><a href="#2-2将稀疏数组写入磁盘文件中" class="headerlink" title="2.2将稀疏数组写入磁盘文件中"></a>2.2将稀疏数组写入磁盘文件中</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Author: yxc</span></span><br><span class="line"><span class="comment"> * @date: 2020/2/23 15:10</span></span><br><span class="line"><span class="comment"> * @Description 稀疏数组写进磁盘文件</span></span><br><span class="line"><span class="comment"> * @parm [sparseArray]</span></span><br><span class="line"><span class="comment"> * @return void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sparseArrayOutput</span><span class="params">(<span class="keyword">int</span>[][] sparseArray)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"F:\\IDEAWorkSpace\\JavaStudy\\src\\AMyself\\SparseArrayDemo.txt"</span>);</span><br><span class="line">    BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sparseArray.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">            String content = String.valueOf(sparseArray[i][j]);</span><br><span class="line">            bos.write(content.getBytes(), <span class="number">0</span>, content.getBytes().length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    bos.flush();</span><br><span class="line">    bos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-接下来从磁盘中读取稀疏数组"><a href="#2-3-接下来从磁盘中读取稀疏数组" class="headerlink" title="2.3 接下来从磁盘中读取稀疏数组"></a>2.3 接下来从磁盘中读取稀疏数组</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Author: yxc</span></span><br><span class="line"><span class="comment"> * @date: 2020/2/23 16:22</span></span><br><span class="line"><span class="comment"> * @Description 把稀疏数组从磁盘文件中读取出来</span></span><br><span class="line"><span class="comment"> * @parm []</span></span><br><span class="line"><span class="comment"> * @return int[][]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] sparseArrayIntput() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"F:\\IDEAWorkSpace\\JavaStudy\\src\\AMyself\\SparseArrayDemo.txt"</span>);</span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">10240</span>];</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] sparseArray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">            <span class="comment">//单个读取</span></span><br><span class="line">            <span class="keyword">if</span> (flag != -<span class="number">1</span>) &#123;</span><br><span class="line">                flag = fis.read();</span><br><span class="line">                <span class="keyword">int</span> data = Integer.parseInt(String.valueOf((<span class="keyword">char</span>) flag));</span><br><span class="line">                sparseArray[i][j] = data;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sparseArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-4-将读取到的稀疏数组还原"><a href="#2-4-将读取到的稀疏数组还原" class="headerlink" title="2.4 将读取到的稀疏数组还原"></a>2.4 将读取到的稀疏数组还原</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	 <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//接收读取到的稀疏数组</span></span><br><span class="line">        <span class="keyword">int</span>[][] sparseArrayIntput;</span><br><span class="line">        sparseArrayIntput = sparseArrayIntput();</span><br><span class="line">        <span class="comment">//查看读取出来的数组</span></span><br><span class="line">        <span class="comment">//openF(sparseArrayIntput);</span></span><br><span class="line">        <span class="comment">//5.还原出原数组</span></span><br><span class="line">        <span class="keyword">int</span> chessArr2[][] = <span class="keyword">new</span> <span class="keyword">int</span>[sparseArrayIntput[<span class="number">0</span>][<span class="number">0</span>]][sparseArrayIntput[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; sparseArrayIntput.length; i++) &#123;</span><br><span class="line">            chessArr2[sparseArrayIntput[i][<span class="number">0</span>]][sparseArrayIntput[i][<span class="number">1</span>]] = sparseArrayIntput[i][<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        openF(chessArr2);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-效果截图"><a href="#3-效果截图" class="headerlink" title="3.效果截图"></a>3.效果截图</h3><p><img src="https://raw.githubusercontent.com/yuanxuanchao/clouding/master/img/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84.png" alt=""></p>
+<p><span style='font-size:20px;'>本文到此结束 感谢相遇 (●’◡’●)</span></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/" rel="tag">java</a>, <a class="has-link-grey -link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a>, <a class="has-link-grey -link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2020
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T10:34:10.982Z">2020-02-29</time>
-                        <a href="/2020/02/29/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T08:53:33.147Z">2020-02-29</time>
-                        <a href="/2020/02/29/%E6%A8%A1%E6%8B%9F%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟双向链表</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-29T07:11:32.275Z">2020-02-29</time>
-                        <a href="/2020/02/29/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%83%E4%B9%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-28T12:39:22.572Z">2020-02-28</time>
-                        <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟单链表</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-27T00:34:31.744Z">2020-02-27</time>
-                        <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数组模拟队列</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-23T09:27:27.786Z">2020-02-23</time>
-                        <a href="/2020/02/23/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" class="title has-link-black-ter is-size-6 has-text-weight-normal">稀疏数组</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-22T13:28:16.371Z">2020-02-22</time>
-                        <a href="/2020/02/22/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试准备</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-02-20T04:04:58.431Z">2020-02-20</time>
-                        <a href="/2020/02/20/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
-    
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">数组模拟队列</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/22/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+                <span class="level-item">面试准备</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'mT5uiYctQfAiE0XqhhkGDcaw-gzGzoHsz',
+        app_key: 'MUa8DmKatYFbzoCfJCX5NttC',
+        placeholder: 'good'
+    });
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -874,7 +879,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Three-pointed blood" height="28">
+                    <img src="/images/logo.svg" alt="稀疏数组" height="28">
                 
                 </a>
                 <p class="is-size-7">
