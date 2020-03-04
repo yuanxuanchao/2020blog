@@ -142,6 +142,64 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-04T11:53:33.745Z">2020-03-04</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes 读完 (大约 301 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/04/%E8%BF%B7%E5%AE%AB%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98/">迷宫回溯问题</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>采用递归的方式，一步一步走到终点。</strong></p>
+<h5 id="1-生成地图"><a href="#1-生成地图" class="headerlink" title="1.生成地图"></a>1.生成地图</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成地图</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>][<span class="number">8</span>];</span><br><span class="line">    <span class="comment">//造墙 上下左右全部置为1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//左右的墙</span></span><br><span class="line">        map[i][<span class="number">0</span>] = <span class="number">1</span>; map[i][<span class="number">7</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//上下的墙</span></span><br><span class="line">        map[<span class="number">0</span>][i] = <span class="number">1</span>; map[<span class="number">7</span>][i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//设置挡板</span></span><br><span class="line">    map[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">1</span>;map[<span class="number">3</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//打印出地图</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] ints : map) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> anInt : ints) &#123;</span><br><span class="line">            System.out.printf(<span class="string">"%d\t"</span>, anInt);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-开始寻找"><a href="#2-开始寻找" class="headerlink" title="2.开始寻找"></a>2.开始寻找</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">     * @Author: yxc</span></span><br><span class="line"><span class="comment">     * @date: 2020/3/4 19:10</span></span><br><span class="line"><span class="comment">     * @Description 开始找出口 从[i][j] 走到 [6][6]</span></span><br><span class="line"><span class="comment">     * 1.事先就决定好行走的策略下右上左 2.能走的通将线路置为2，没有路径则置为3</span></span><br><span class="line"><span class="comment">     * @parm [map, i, j]</span></span><br><span class="line"><span class="comment">     * @return void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">runout</span><span class="params">(<span class="keyword">int</span>[][] map,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//找到迷宫出口</span></span><br><span class="line">        <span class="keyword">if</span>(map[<span class="number">6</span>][<span class="number">6</span>] == <span class="number">2</span>)&#123; <span class="comment">//走到[6][6] = 2,在继续走，然后判断</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (map[i][j] ==<span class="number">0</span>)&#123;<span class="comment">//当前的点没走过</span></span><br><span class="line">                map[i][j] = <span class="number">2</span>;<span class="comment">//假定走这能走到终点</span></span><br><span class="line">                <span class="keyword">if</span>(runout(map,i+<span class="number">1</span>,j))&#123;<span class="comment">//先向下走</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span> (runout(map,i,j+<span class="number">1</span>))&#123;<span class="comment">//往下走不通 往右</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span> (runout(map,i-<span class="number">1</span>,j))&#123;<span class="comment">//往右走不通 往上</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(runout(map,i,j-<span class="number">1</span>))&#123;<span class="comment">//往上走不通</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    map[<span class="number">3</span>][<span class="number">3</span>] = <span class="number">3</span>;<span class="comment">//无论如何都走不到终点</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;<span class="comment">//现在的点不能走</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果如图：</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/yuanxuanchao/clouding/master/img/migong.png"  />
+
+
+
+<p><span style='font-size:20px;'>本文到此结束 感谢相遇 (●’◡’●)</span> </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time>
                 
                 <div class="level-item">
@@ -161,7 +219,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/04/%E9%80%92%E5%BD%92/">单链表练习</a>
+                <a class="has-link-black-ter" href="/2020/03/04/%E9%80%92%E5%BD%92/">递归机制</a>
             
         </h1>
         <div class="content">
@@ -625,7 +683,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -732,7 +790,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
@@ -776,16 +834,35 @@
         
         <article class="media">
             
+            <a href="/2020/03/04/%E8%BF%B7%E5%AE%AB%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="迷宫回溯问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T11:53:33.745Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/%E8%BF%B7%E5%AE%AB%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98/" class="title has-link-black-ter is-size-6 has-text-weight-normal">迷宫回溯问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单链表练习">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="递归机制">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time></div>
-                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
+                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">递归机制</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                     </p>
@@ -850,25 +927,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟单链表">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-28T12:39:22.572Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟单链表</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -886,7 +944,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -918,21 +976,21 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%A4%8D%E4%B9%A0/">
                         <span class="tag">复习</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="tag">算法</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -946,7 +1004,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
                         <span class="tag">面试</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -974,16 +1032,35 @@
         
         <article class="media">
             
+            <a href="/2020/03/04/%E8%BF%B7%E5%AE%AB%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="迷宫回溯问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T11:53:33.745Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/%E8%BF%B7%E5%AE%AB%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98/" class="title has-link-black-ter is-size-6 has-text-weight-normal">迷宫回溯问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单链表练习">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="递归机制">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time></div>
-                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
+                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">递归机制</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                     </p>
@@ -1048,25 +1125,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟单链表">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-28T12:39:22.572Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/%E6%A8%A1%E6%8B%9F%E5%8D%95%E9%93%BE%E8%A1%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟单链表</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1084,7 +1142,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1116,21 +1174,21 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%A4%8D%E4%B9%A0/">
                         <span class="tag">复习</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="tag">算法</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1144,7 +1202,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
                         <span class="tag">面试</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
