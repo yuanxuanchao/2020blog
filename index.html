@@ -132,6 +132,68 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes 读完 (大约 327 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/04/%E9%80%92%E5%BD%92/">单链表练习</a>
+            
+        </h1>
+        <div class="content">
+            <h5 id="什么叫递归？"><a href="#什么叫递归？" class="headerlink" title="什么叫递归？"></a>什么叫递归？</h5><p>直接或间接调用函数本身</p>
+<h5 id="递归调用规则"><a href="#递归调用规则" class="headerlink" title="递归调用规则"></a>递归调用规则</h5><ol>
+<li>当程序执行到一个方法时，就会开辟一个 独立的空间（栈）</li>
+<li>每个空间的数据（局部变量）是独立的</li>
+<li>如果传入的是引用类型时（比如数组），就会共享该引用类型的数据</li>
+<li>递归必须向退出递归的条件逼近，否则就会栈溢出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Stack &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        test(4);</span><br><span class="line">    &#125;</span><br><span class="line">    public static void test(int n) &#123;</span><br><span class="line">        if (n &gt; 2) &#123;</span><br><span class="line">            test(n - 1);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            System.out.println(&quot;此时的n&#x3D;&quot; + n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>此时的结果时 只输出一次 n=2   当去掉else 时 输出结果时 n=2；n=3；n=4；</strong></p>
+<p>每次都会在栈里开一个*<em>局部变量 *</em>n ,输出时执行的第一个指令为n = 2;然后放回到上一个栈。</p>
+<p>只有<strong>最顶级的栈会进入else</strong> 其他的<strong>在结束前就进入了 if</strong> 所以就不会有输出</p>
+<p><img src="https://raw.githubusercontent.com/yuanxuanchao/clouding/master/img/digui.png" alt=""></p>
+<h5 id="递归能解决什么问题？"><a href="#递归能解决什么问题？" class="headerlink" title="递归能解决什么问题？"></a>递归能解决什么问题？</h5><p>8皇后问题，汉诺塔，阶乘问题，迷宫问题。</p>
+<p>快排，归并，二分查找，分治。</p>
+<p>用栈解决的问题，用递归代码比较简洁</p>
+<p><span style='font-size:20px;'>本文到此结束 感谢相遇 (●’◡’●)</span></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-01T09:06:55.602Z">2020-03-01</time>
                 
                 <div class="level-item">
@@ -338,62 +400,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-27T00:34:31.744Z">2020-02-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes 读完 (大约 647 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">数组模拟队列</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="方式一-普通队列"><a href="#方式一-普通队列" class="headerlink" title="方式一:普通队列"></a>方式一:普通队列</h2><p>  这种方式数组只是使用一次</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> front;<span class="comment">//模拟头指针</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> rear;<span class="comment">//模拟尾指针</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> Maxsize;<span class="comment">//模拟队列最大容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] array;<span class="comment">//模拟队列存放数据</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造方法初始化数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayQueueDemo</span><span class="params">(<span class="keyword">int</span> maxsize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.front = -<span class="number">1</span>;<span class="comment">//指向队列头元素的前一个</span></span><br><span class="line">        <span class="keyword">this</span>.rear = -<span class="number">1</span>; <span class="comment">//指向队列的最后一个元素</span></span><br><span class="line">        Maxsize = maxsize;</span><br><span class="line">        <span class="keyword">this</span>.array = <span class="keyword">new</span> <span class="keyword">int</span>[Maxsize];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>栈满的条件</strong>:<code>front == rear</code>     <strong>栈空的条件</strong>:<code>rear == Maxsize - 1;</code></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -458,7 +464,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -565,7 +571,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
@@ -609,6 +615,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单链表练习">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/01/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟环形链表">
@@ -683,25 +708,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="数组模拟队列">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T00:34:31.744Z">2020-02-27</time></div>
-                    <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数组模拟队列</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -719,7 +725,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -751,21 +757,21 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%A4%8D%E4%B9%A0/">
                         <span class="tag">复习</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="tag">算法</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -779,7 +785,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
                         <span class="tag">面试</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -807,6 +813,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单链表练习">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T08:58:03.965Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/%E9%80%92%E5%BD%92/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单链表练习</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/01/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟环形链表">
@@ -881,25 +906,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="数组模拟队列">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T00:34:31.744Z">2020-02-27</time></div>
-                    <a href="/2020/02/27/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数组模拟队列</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -917,7 +923,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -949,21 +955,21 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%A4%8D%E4%B9%A0/">
                         <span class="tag">复习</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="tag">算法</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -977,7 +983,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
                         <span class="tag">面试</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
